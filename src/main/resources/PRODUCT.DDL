@@ -1,0 +1,16 @@
+CREATE TABLE Product (
+  PRODUCT_ID           UUID PRIMARY KEY NOT NULL,
+  DESCRIPTION          VARCHAR,
+  ITEM_LOOKUP_CODE     VARCHAR,
+  PRICE                MONEY,
+  ITEM_TYPE            INTEGER,
+  COST                 MONEY,
+  QUANTITY             INTEGER,
+  REORDER_POINT        INTEGER,
+  RESTOCK_LEVEL        INTEGER,
+  PARENT_ITEM          UUID,
+  EXTENDED_DESCRIPTION VARCHAR,
+  ACTIVE_STATUS        BOOLEAN,
+  MSRP                 MONEY,
+  DATE_CREATED         DATE
+);
