@@ -1,7 +1,10 @@
+import org.npc.testmodel.models.Product;
+
 import java.util.Date;
 import java.util.UUID;
 
-public class Product {
+@SuppressWarnings("unused")
+public class ProductImpl extends Product {
 
     private UUID productId;
     private String description;
@@ -18,13 +21,13 @@ public class Product {
     private double MSRP;
     private Date dateCreated;
 
-    public Product() {
+    public ProductImpl() {
         super();
     }
 
-    public Product(UUID productId, String description, int itemLookupCode, double price, int itemType, double cost,
-                   int quantity, int reorderPoint, int restockLevel, UUID parentItem, String extendedDescription,
-                   boolean activeStatus, double MSRP, Date dateCreated) {
+    public ProductImpl(UUID productId, String description, int itemLookupCode, double price, int itemType, double cost,
+                       int quantity, int reorderPoint, int restockLevel, UUID parentItem, String extendedDescription,
+                       boolean activeStatus, double MSRP, Date dateCreated) {
 
         this.productId = productId;
         this.description = description;
