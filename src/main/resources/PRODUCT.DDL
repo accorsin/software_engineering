@@ -1,5 +1,5 @@
 CREATE TABLE Product (
-  PRODUCT_ID           UUID PRIMARY KEY NOT NULL,
+  PRODUCT_ID   UUID PRIMARY KEY DEFAULT uuid_generate_v4() NOT NULL,
   DESCRIPTION          VARCHAR,
   ITEM_LOOKUP_CODE     VARCHAR,
   PRICE                MONEY,
@@ -12,5 +12,10 @@ CREATE TABLE Product (
   EXTENDED_DESCRIPTION VARCHAR,
   ACTIVE_STATUS        BOOLEAN,
   MSRP                 MONEY,
-  DATE_CREATED         DATE
+  DATE_CREATED TIMESTAMP DEFAULT now()
 );
+
+
+--Use this to import the product data into your database. You'll need set the path to the file on your system
+COPY product (description, price, cost, reorder_point, restock_level, extended_description, active_status, msrp, date_created)
+FROM 'SET_ME/ProductData.csv' CSV HEADER;
