@@ -1,5 +1,6 @@
+package com.zebra.dataModel;
 
-public abstract class ProductFieldNames {
+public abstract class ProductFieldNames extends org.npc.testmodel.models.fieldnames.ProductFieldNames{
 
 	public static final String ID = "id";
 	public static final String DESCRIPTION = "description";

@@ -1,3 +1,5 @@
+package com.zebra.dataModel;
+
 import java.util.UUID;
 
 public class TransactionEntry {

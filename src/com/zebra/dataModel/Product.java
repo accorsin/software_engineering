@@ -1,19 +1,15 @@
-import org.npc.dataaccess.model.BaseModel;
-import org.npc.dataaccess.repository.BaseRepositoryInterface;
+package com.zebra.dataModel;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
 
 
 @SuppressWarnings("unused")
-public class Product extends BaseModel<Product> {
+public class Product extends org.npc.testmodel.models.Product {
 
 	private UUID id;
 	private String description;
-	private int lookupCode;
+	private String lookupCode;
 	private double price;
 	private int itemType;
 	private double cost;
@@ -26,44 +22,11 @@ public class Product extends BaseModel<Product> {
 	private double MSRP;
 	private Date dateCreated;
 
-	protected Product(BaseRepositoryInterface repository) {
-		super(repository);
+	public Product() {
 	}
 
-	protected Product(UUID id, BaseRepositoryInterface repository) {
-		super(id, repository);
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public BaseModel setId(UUID id) {
-		this.id = id;
-		return this;
-	}
-
-	@Override
-	protected void fillFromRecord(ResultSet rs) throws SQLException {
-		this.setId((UUID) rs.getObject(ProductFieldNames.ID));
-		this.setDescription(rs.getString(ProductFieldNames.DESCRIPTION));
-		this.setLookupCode(rs.getInt(ProductFieldNames.LOOKUP_CODE));
-		this.setPrice(rs.getDouble(ProductFieldNames.PRICE));
-		this.setItemType(rs.getInt(ProductFieldNames.ITEM_TYPE));
-		this.setCost(rs.getDouble(ProductFieldNames.COST));
-		this.setQuantity(rs.getInt(ProductFieldNames.QUANTITY));
-		this.setReorderPoint(rs.getInt(ProductFieldNames.REORDER_POINT));
-		this.setRestockLevel(rs.getInt(ProductFieldNames.RESTOCK_LEVEL));
-		this.setParentItem((UUID) rs.getObject(ProductFieldNames.PARENT_ITEM));
-		this.setExtendedDescription(rs.getString(ProductFieldNames.EXTENDED_DESCRIPTION));
-		this.setActiveStatus(rs.getBoolean(ProductFieldNames.ACTIVE_STATUS));
-		this.setMsrp(rs.getDouble(ProductFieldNames.MSRP));
-		this.setDateCreated(rs.getDate(ProductFieldNames.DATE_CREATED));
-	}
-
-	@Override
-	protected Map<String, Object> fillRecord(Map record) {
-		return null;
+	public Product(UUID id) {
+		super(id);
 	}
 
 	public String getDescription() {
@@ -72,14 +35,6 @@ public class Product extends BaseModel<Product> {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getLookupCode() {
-		return lookupCode;
-	}
-
-	public void setLookupCode(int lookupCode) {
-		this.lookupCode = lookupCode;
 	}
 
 	public double getPrice() {

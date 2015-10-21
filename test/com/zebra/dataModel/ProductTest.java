@@ -1,4 +1,7 @@
-import org.npc.dataaccess.repository.DatabaseTable;
+package com.zebra.dataModel;
+
+import org.npc.testmodel.repositories.ProductRepository;
+import org.npc.testmodel.models.Product;
 
 import java.util.UUID;
 
@@ -8,15 +11,13 @@ public class ProductTest {
 
 		UUID id = UUID.fromString("ed5c1fa9-803c-4208-bf09-654f00200516");
 
-		ProductRepository repository = new ProductRepository(DatabaseTable.PRODUCT);
+		ProductRepository repository = new ProductRepository();
 
 		Product product = repository.get(id);
 
 		System.out.println(product);
 
-		boolean b = repository.exists(id);
-
-		System.out.println(b);
+		System.out.println(repository.exists(id));
 
 	}
 }
