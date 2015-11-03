@@ -1,6 +1,6 @@
 --tender_entry table
 
-CREATE TYPE Tender AS ENUM ('Cash', 'Giftcard', 'Mastercard', 'VISA', 'Discover', 'AMEX', 'Debit');
+CREATE TYPE Tender AS ENUM ('CASH', 'GIFTCARD', 'MASTERCARD', 'VISA', 'DISCOVER', 'AMEX', 'DEBIT');
 
 CREATE TABLE TenderEntry (
   record_id      UUID PRIMARY KEY NOT NULL,
