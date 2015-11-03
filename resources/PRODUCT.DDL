@@ -1,5 +1,5 @@
 CREATE TABLE Product (
-  PRODUCT_ID   UUID PRIMARY KEY DEFAULT uuid_generate_v4() NOT NULL,
+  ID   UUID PRIMARY KEY DEFAULT uuid_generate_v4() NOT NULL,
   DESCRIPTION          VARCHAR,
   ITEM_LOOKUP_CODE     VARCHAR,
   PRICE                MONEY,
