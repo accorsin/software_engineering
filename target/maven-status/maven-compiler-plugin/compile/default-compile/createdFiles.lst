@@ -1,0 +1,12 @@
+com\zebra\dataModel\Transaction.class
+com\zebra\registerService\commands\ProductQuery.class
+com\zebra\registerService\TestServletContextListener.class
+com\zebra\dataModel\Product.class
+com\zebra\registerService\commands\ProductsQuery.class
+com\zebra\registerService\TestResource.class
+com\zebra\dataModel\ProductFieldNames.class
+com\zebra\registerService\commands\interfaces\ResultCommandInterface.class
+com\zebra\dataModel\TenderEntry.class
+com\zebra\dataModel\TenderEntry$tender.class
+com\zebra\dataModel\TransactionEntry.class
+com\zebra\registerService\commands\CreateProductCommand.class
