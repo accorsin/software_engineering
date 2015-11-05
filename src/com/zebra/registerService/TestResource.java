@@ -29,6 +29,20 @@ public class TestResource  extends ResourceConfig {
 
 		return productQuery.execute();
 	}
+
+	@GET
+	@Path("apiv0/productByLookUpCode/{lookUpCode}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Product getProductByLookUpCode(@PathParam("lookUpCode") String lookUpCode) {
+
+		ProductQuery productQuery = new ProductQuery();
+		ProductRepository productRepository = new ProductRepository();
+
+		productQuery.setProductRepository(productRepository);
+		productQuery.setLookUpCode(lookUpCode);
+
+		return productQuery.executeByLookUpCode();
+	}
 	
 	@GET
 	@Path("test")
