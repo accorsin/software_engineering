@@ -17,5 +17,5 @@ CREATE TABLE Product (
 
 
 --Use this to import the product data into your database. You'll need set the path to the file on your system
-COPY product (description, price, cost, reorder_point, restock_level, extended_description, active_status, msrp, date_created)
+COPY product (description, item_lookup_code, price, cost, reorder_point, restock_level, extended_description, active_status, msrp, date_created)
 FROM 'SET_ME/ProductData.csv' CSV HEADER;
