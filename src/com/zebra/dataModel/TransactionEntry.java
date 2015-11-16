@@ -1,8 +1,39 @@
 package com.zebra.dataModel;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
-public class TransactionEntry {
+import org.apache.commons.lang3.StringUtils;
+import org.npc.dataaccess.model.BaseModel;
+/*import org.npc.testmodel.models.fieldnames.ProductFieldNames;*/
+/*import org.npc.testmodel.repositories.ProductRepository;*/
+
+
+public class TransactionEntry extends BaseModel<TransactionEntry> {
+
+	@Override
+	protected void fillFromRecord(ResultSet rs) throws SQLExcepetion {
+		this.recordID = rs.getUUID(TransactionEntryFieldNames.ID);
+		this.transactionID = rs.getUUID(TransactionEntryFieldNames.TRANSACTION_ID);
+		this.productID = rs.getUUID(TransactionEntryFieldNames.PRODUCT_ID);
+		this.price = rs.getDouble(TransactionEntryFieldNames.PRICE);
+		this.quantity = rs.getInt(TransactionEntryFieldNames.QUANTITY);	
+	}
+	
+	@Override
+	protected Map<String, Object> fillRecord(Map<String, Object> record) {
+		record.put(TransactionEntryFieldNames.ID, this.recordID);
+		record.put(TransactionEntryFieldNames.TRANSACTION_ID, this.transactionID);
+		record.put(TransactionEntryFieldNames.PRODUCT_ID, this.productID);
+		record.put(TransactionEntryFieldNames.PRICE, this.price);
+		record.put(TransactionEntryFieldNames.QUANTITY, this.quantity);
+		
+		return record;
+	}
 
     private UUID recordID;
     private UUID transactionID;

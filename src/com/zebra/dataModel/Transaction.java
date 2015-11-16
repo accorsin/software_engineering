@@ -3,7 +3,29 @@ package com.zebra.dataModel;
 import java.util.Date;
 import java.util.UUID;
 
-public class Transaction {
+public class Transaction extends BaseModel<Product>{
+
+	@Override
+	protected void fillFromRecord(ResultSet rs) throws SQLExcepetion {
+		this.recordID = rs.getUUID(TransactionFieldNames.ID);
+		this.cashierID = rs.getUUID(TransactionFieldNames.CASHIER_ID);
+		this.parentID = rs.getUUID(TransactionFieldNames.PARENT_ID);
+		this.amount = rs.getDouble(TransactionFieldNames.AMOUNT);
+		this.transactionType = rs.getString(TransactionFieldNames.TRANSACTION_TYPE);	
+		this.timeStamp = rs.getTimestamp(TransactionFieldNames.DATE_CREATED).toLocalDateTime();
+	}
+	
+	@Override
+	protected Map<String, Object> fillRecord(Map<String, Object> record) {
+		record.put(TransactionFieldNames.ID, this.recordID);
+		record.put(TransactionFieldNames.TRANSACTION_ID, this.transactionID);
+		record.put(TransactionFieldNames.PRODUCT_ID, this.productID);
+		record.put(TransactionFieldNames.PRICE, this.price);
+		record.put(TransactionFieldNames.DATE_CREATED, Timestamp.valueOf(this.timeStamp));
+		
+		return record;
+	}
+
 
     private UUID recordID;
     private UUID cashierID;
