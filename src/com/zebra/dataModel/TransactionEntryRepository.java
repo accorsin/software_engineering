@@ -1,4 +1,4 @@
-package com.zebra.transaction;
+package com.zebra.dataModel;
 
 import java.sql.SQLException;
 import java.util.UUID;

@@ -22,7 +22,7 @@ public class ProductQuery implements ResultCommandInterface<Product> {
 	public Product executeByLookUpCode() {
 		Product product = new Product();
 		try {
-			product = new Product(this.productRepository.getByLookUpCode(this.lookUpCode));
+			product = new Product(this.productRepository.byLookupCode(this.lookUpCode));
 		}
 		catch (Exception e) {
 			product = null;

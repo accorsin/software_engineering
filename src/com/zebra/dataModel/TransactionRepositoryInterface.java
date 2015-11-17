@@ -1,4 +1,4 @@
-package com.zebra.transaction;
+package com.zebra.dataModel;
 
 import com.zebra.dataModel.Transaction;
 import java.util.UUID;

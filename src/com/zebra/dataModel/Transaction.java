@@ -1,7 +1,16 @@
 package com.zebra.dataModel;
 
-import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
+import org.npc.dataaccess.model.BaseModel;
+/*import org.npc.testmodel.models.fieldnames.ProductFieldNames;*/
+/*import org.npc.testmodel.repositories.ProductRepository;*/
 
 public class Transaction extends BaseModel<Product>{
 
