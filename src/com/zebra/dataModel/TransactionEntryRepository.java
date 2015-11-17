@@ -3,7 +3,6 @@ package com.zebra.dataModel;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import com.zebra.dataModel.DatabaseTables;
 import com.zebra.dataModel.TransactionEntry;
 import org.npc.dataaccess.repository.BaseRepository;
 import org.npc.dataaccess.repository.DatabaseTable;
@@ -11,16 +10,12 @@ import org.npc.dataaccess.repository.helpers.PostgreFunctionType;
 import org.npc.dataaccess.repository.helpers.SQLComparisonType;
 import org.npc.dataaccess.repository.helpers.where.WhereClause;
 import org.npc.dataaccess.repository.helpers.where.WhereContainer;
-import org.npc.testmodel.models.Product;
-import org.npc.testmodel.models.fieldnames.ProductFieldNames;
-import org.npc.testmodel.repositories.interfaces.ProductRepositoryInterface;
-
 /* import PACKAGE for TransactionEntryRepositoryInterface*/
 /* import PACKAGE for TransactionEntryFieldNames*/
 
-public class TransactionRepository extends BaseRepository<Product> implements TransactionRepositoryInterface {
+public class TransactionEntryRepository extends BaseRepository<TransactionEntry> implements TransactionEntryRepositoryInterface {
 	@Override
-	public Transaction byTransactionID (UUID transID) {
+	public TransactionEntry byTransactionEntryId(UUID transID) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
@@ -40,11 +35,11 @@ public class TransactionRepository extends BaseRepository<Product> implements Tr
 	}
 	
 	@Override
-	public Transaction createOne() {
-		return new Transaction();
+	public TransactionEntry createOne() {
+		return new TransactionEntry();
 	}
 	
-	public TransactionRepository() {
-		super(DatabaseTable.TRANSACTION);
+	public TransactionEntryRepository() {
+		super(DatabaseTable.ENTRY);
 	}
 }

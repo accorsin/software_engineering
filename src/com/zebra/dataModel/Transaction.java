@@ -6,31 +6,32 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.npc.dataaccess.model.BaseModel;
-/*import org.npc.testmodel.models.fieldnames.ProductFieldNames;*/
 /*import org.npc.testmodel.repositories.ProductRepository;*/
 
-public class Transaction extends BaseModel<Product>{
+public class Transaction extends BaseModel<Transaction>{
 
 	@Override
-	protected void fillFromRecord(ResultSet rs) throws SQLExcepetion {
-		this.recordID = rs.getUUID(TransactionFieldNames.ID);
-		this.cashierID = rs.getUUID(TransactionFieldNames.CASHIER_ID);
-		this.parentID = rs.getUUID(TransactionFieldNames.PARENT_ID);
+	protected void fillFromRecord(ResultSet rs) throws SQLException {
+		this.recordID = UUID.fromString(rs.getString(TransactionFieldNames.ID));
+		this.cashierID = UUID.fromString(rs.getString(TransactionFieldNames.CASHIER_ID));
+		this.parentID = UUID.fromString(rs.getString(TransactionFieldNames.PARENT_ID));
 		this.amount = rs.getDouble(TransactionFieldNames.AMOUNT);
 		this.transactionType = rs.getString(TransactionFieldNames.TRANSACTION_TYPE);	
-		this.timeStamp = rs.getTimestamp(TransactionFieldNames.DATE_CREATED).toLocalDateTime();
+		this.timeStamp = new Date(rs.getTimestamp(TransactionFieldNames.DATE_CREATED).getTime());
 	}
 	
 	@Override
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
 		record.put(TransactionFieldNames.ID, this.recordID);
-		record.put(TransactionFieldNames.TRANSACTION_ID, this.transactionID);
-		record.put(TransactionFieldNames.PRODUCT_ID, this.productID);
-		record.put(TransactionFieldNames.PRICE, this.price);
-		record.put(TransactionFieldNames.DATE_CREATED, Timestamp.valueOf(this.timeStamp));
+		record.put(TransactionFieldNames.CASHIER_ID, this.cashierID);
+		record.put(TransactionFieldNames.PARENT_ID, this.parentID);
+		record.put(TransactionFieldNames.AMOUNT, this.amount);
+		record.put(TransactionFieldNames.TRANSACTION_TYPE, this.transactionType);
+		record.put(TransactionFieldNames.DATE_CREATED, this.timeStamp.getTime());
 		
 		return record;
 	}
@@ -47,8 +48,7 @@ public class Transaction extends BaseModel<Product>{
         super();
     }
 
-    public Transaction(
-            UUID Record_ID, UUID Cashier_ID, UUID Parent_ID, double Amount, String Transaction_Type, Date Time_Stamp) {
+    public Transaction(UUID Record_ID, UUID Cashier_ID, UUID Parent_ID, double Amount, String Transaction_Type, Date Time_Stamp) {
         this.recordID = Record_ID;
         this.cashierID = Cashier_ID;
         this.parentID = Parent_ID;

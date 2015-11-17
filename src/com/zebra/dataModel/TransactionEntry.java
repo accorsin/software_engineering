@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.npc.dataaccess.model.BaseModel;
@@ -16,10 +17,10 @@ import org.npc.dataaccess.model.BaseModel;
 public class TransactionEntry extends BaseModel<TransactionEntry> {
 
 	@Override
-	protected void fillFromRecord(ResultSet rs) throws SQLExcepetion {
-		this.recordID = rs.getUUID(TransactionEntryFieldNames.ID);
-		this.transactionID = rs.getUUID(TransactionEntryFieldNames.TRANSACTION_ID);
-		this.productID = rs.getUUID(TransactionEntryFieldNames.PRODUCT_ID);
+	protected void fillFromRecord(ResultSet rs) throws SQLException {
+		this.recordID = UUID.fromString(rs.getString(TransactionEntryFieldNames.ID));
+		this.transactionID = UUID.fromString(rs.getString(TransactionEntryFieldNames.TRANSACTION_ID));
+		this.productID = UUID.fromString(rs.getString(TransactionEntryFieldNames.PRODUCT_ID));
 		this.price = rs.getDouble(TransactionEntryFieldNames.PRICE);
 		this.quantity = rs.getInt(TransactionEntryFieldNames.QUANTITY);	
 	}

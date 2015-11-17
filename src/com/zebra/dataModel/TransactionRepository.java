@@ -1,6 +1,7 @@
 package com.zebra.dataModel;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 import org.npc.dataaccess.repository.BaseRepository;
 import org.npc.dataaccess.repository.DatabaseTable;
@@ -8,15 +9,12 @@ import org.npc.dataaccess.repository.helpers.PostgreFunctionType;
 import org.npc.dataaccess.repository.helpers.SQLComparisonType;
 import org.npc.dataaccess.repository.helpers.where.WhereClause;
 import org.npc.dataaccess.repository.helpers.where.WhereContainer;
-import org.npc.testmodel.models.Product;
-import org.npc.testmodel.models.fieldnames.ProductFieldNames;
-import org.npc.testmodel.repositories.interfaces.ProductRepositoryInterface;
 /* import PACKAGE for TransactionRepositoryInterface*/
 /* import PACKAGE for TransactionFieldNames*/
 
-public class TransactionRepository extends BaseRepository<Product> implements TransactionRepositoryInterface {
+public class TransactionRepository extends BaseRepository<Transaction> implements TransactionRepositoryInterface {
 	@Override
-	public Transaction byTransactionID (UUID transID) {
+	public Transaction byTransactionId(UUID transID) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
