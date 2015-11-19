@@ -1,17 +1,11 @@
 package com.zebra.dataModel;
 
+import org.npc.dataaccess.model.BaseModel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
-import java.util.Date;
-
-import org.apache.commons.lang3.StringUtils;
-import org.npc.dataaccess.model.BaseModel;
-/*import org.npc.testmodel.models.fieldnames.ProductFieldNames;*/
-/*import org.npc.testmodel.repositories.ProductRepository;*/
 
 
 public class TransactionEntry extends BaseModel<TransactionEntry> {
@@ -42,19 +36,22 @@ public class TransactionEntry extends BaseModel<TransactionEntry> {
     private double price;
     private int quantity;
 
-    public TransactionEntry() {
-        super();
-    }
+	public TransactionEntry() {
+		super(new TransactionEntryRepository());
+	}
 
-    public TransactionEntry(
-            UUID Record_ID, UUID Transaction_ID, UUID Product_ID, double Price, int Quantity) {
-        this.recordID = Record_ID;
-        this.transactionID = Transaction_ID;
-        this.productID = Product_ID;
-        this.price = Price;
-        this.quantity = Quantity;
-    }
+	public TransactionEntry(UUID id) {
+		super(id, new TransactionEntryRepository());
+	}
 
+	public TransactionEntry(org.npc.testmodel.api.TransactionEntry apiTransactionEntry) {
+		super(apiTransactionEntry.getRecordId(), new TransactionEntryRepository());
+		this.recordID = apiTransactionEntry.getRecordId();
+		this.transactionID = apiTransactionEntry.getTransactionID();
+		this.productID = apiTransactionEntry.getProductID();
+		this.price = apiTransactionEntry.getPrice();
+		this.quantity = apiTransactionEntry.getQuantity();
+	}
 
     //Getters for each of the class values
     public UUID getRecordID() {

@@ -1,6 +1,7 @@
 package com.zebra.dataModel;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
 
 import org.npc.dataaccess.repository.BaseRepository;
@@ -31,6 +32,10 @@ public class TransactionRepository extends BaseRepository<Transaction> implement
 				return ts;
 			}
 		);
+	}
+
+	public void saveTransaction(List<Transaction> transactions) {
+		this.saveMany(transactions);
 	}
 	
 	@Override

@@ -8,9 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
 import org.npc.dataaccess.model.BaseModel;
-/*import org.npc.testmodel.repositories.ProductRepository;*/
 
 public class Transaction extends BaseModel<Transaction>{
 
@@ -21,17 +19,17 @@ public class Transaction extends BaseModel<Transaction>{
 		this.parentID = UUID.fromString(rs.getString(TransactionFieldNames.PARENT_ID));
 		this.amount = rs.getDouble(TransactionFieldNames.AMOUNT);
 		this.transactionType = rs.getString(TransactionFieldNames.TRANSACTION_TYPE);	
-		this.timeStamp = new Date(rs.getTimestamp(TransactionFieldNames.DATE_CREATED).getTime());
+		this.timeStamp = rs.getDate(TransactionFieldNames.DATE_CREATED);
 	}
 	
 	@Override
 	protected Map<String, Object> fillRecord(Map<String, Object> record) {
-		record.put(TransactionFieldNames.ID, this.recordID);
+		//record.put(TransactionFieldNames.ID, this.recordID);
 		record.put(TransactionFieldNames.CASHIER_ID, this.cashierID);
 		record.put(TransactionFieldNames.PARENT_ID, this.parentID);
 		record.put(TransactionFieldNames.AMOUNT, this.amount);
 		record.put(TransactionFieldNames.TRANSACTION_TYPE, this.transactionType);
-		record.put(TransactionFieldNames.DATE_CREATED, this.timeStamp.getTime());
+		record.put(TransactionFieldNames.DATE_CREATED, this.timeStamp);
 		
 		return record;
 	}
@@ -42,20 +40,20 @@ public class Transaction extends BaseModel<Transaction>{
     private UUID parentID;
     private double amount;
     private String transactionType;
-    private Date timeStamp;
+    private java.sql.Date timeStamp;
 
     public Transaction() {
-        super();
+        super(new TransactionRepository());
     }
 
-    public Transaction(UUID Record_ID, UUID Cashier_ID, UUID Parent_ID, double Amount, String Transaction_Type, Date Time_Stamp) {
+    /*public Transaction(UUID Record_ID, UUID Cashier_ID, UUID Parent_ID, double Amount, String Transaction_Type, Date Time_Stamp) {
         this.recordID = Record_ID;
         this.cashierID = Cashier_ID;
         this.parentID = Parent_ID;
         this.amount = Amount;
         this.transactionType = Transaction_Type;
         this.timeStamp = Time_Stamp;
-    }
+    }*/
 
 
     //Getters for each of the class values
@@ -105,7 +103,7 @@ public class Transaction extends BaseModel<Transaction>{
         return this.timeStamp;
     }
 
-    public void setTimeStamp(Date newTime_Stamp) {
+    public void setTimeStamp(java.sql.Date newTime_Stamp) {
         this.timeStamp = newTime_Stamp;
     }
 
