@@ -43,12 +43,13 @@ public class TransactionEntry extends BaseModel<TransactionEntry> {
     private int quantity;
 
     public TransactionEntry() {
-        super();
+        super(new TransactionEntryRepository());
     }
 
     public TransactionEntry(
             UUID Record_ID, UUID Transaction_ID, UUID Product_ID, double Price, int Quantity) {
-        this.recordID = Record_ID;
+    	super(new TransactionEntryRepository());
+    	this.recordID = Record_ID;
         this.transactionID = Transaction_ID;
         this.productID = Product_ID;
         this.price = Price;
