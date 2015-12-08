@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 import org.npc.dataaccess.model.BaseModel;
 
@@ -18,6 +20,7 @@ public class Transaction extends BaseModel<Transaction>{
 		this.amount = rs.getDouble(TransactionFieldNames.AMOUNT);
 		this.transactionType = rs.getString(TransactionFieldNames.TRANSACTION_TYPE);	
 		this.timeStamp = rs.getDate(TransactionFieldNames.DATE_CREATED);
+		/*TODO: Add query for all T_Entries with the same TransactionID as this recordID*/
 	}
 	
 	@Override
@@ -28,7 +31,7 @@ public class Transaction extends BaseModel<Transaction>{
 		record.put(TransactionFieldNames.AMOUNT, this.amount);
 		record.put(TransactionFieldNames.TRANSACTION_TYPE, this.transactionType);
 		record.put(TransactionFieldNames.DATE_CREATED, this.timeStamp);
-		
+		/*TO DO: Add */ 
 		return record;
 	}
 
@@ -39,6 +42,7 @@ public class Transaction extends BaseModel<Transaction>{
     private double amount;
     private String transactionType;
     private Date timeStamp;
+    private ArrayList<TransactionEntry> entryList;
 
     public Transaction() {
         super(new TransactionRepository());
@@ -104,6 +108,28 @@ public class Transaction extends BaseModel<Transaction>{
     public void setTimeStamp(java.sql.Date newTime_Stamp) {
         this.timeStamp = newTime_Stamp;
     }
+    
+    @Override
+	public String toString() {
+    	StringBuilder allEntries = new StringBuilder();
+    	Iterator<TransactionEntry> iterator = entryList.iterator();
+    	
+    	TransactionEntry curr;
+    	while (iterator.hasNext()){
+    		curr = iterator.next();
+    		allEntries.append(curr.toString());
+    	}
+    	
+		return "Transaction{" +
+				"recordID=" + recordID +
+				", cashierID='" + cashierID + '\'' +
+				", parentID=" + parentID +
+				", amount=" + amount +
+				", transactionType=" + transactionType +
+				", timeStamp=" + timeStamp +
+				allEntries +
+				'}';
+	}
 
 }
 

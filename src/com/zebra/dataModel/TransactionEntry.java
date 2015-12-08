@@ -2,13 +2,9 @@ package com.zebra.dataModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
-import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
 import org.npc.dataaccess.model.BaseModel;
 /*import org.npc.testmodel.models.fieldnames.ProductFieldNames;*/
 /*import org.npc.testmodel.repositories.ProductRepository;*/
@@ -99,5 +95,15 @@ public class TransactionEntry extends BaseModel<TransactionEntry> {
     public void setQuantity(int newQuantity) {
         this.quantity = newQuantity;
     }
-
+    
+    @Override
+	public String toString() {
+		return "TransactionEntry{" +
+				"recordID=" + recordID +
+				", transactionID='" + transactionID + '\'' +
+				", productID=" + productID +
+				", price=" + price +
+				", quantity=" + quantity +
+				'}';
+	}
 }
