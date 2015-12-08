@@ -22,8 +22,10 @@ public class TransactionQuery implements ResultCommandInterface<Transaction> {
 
 	public void save() {
 		com.zebra.dataModel.Transaction transaction = new com.zebra.dataModel.Transaction();
+		transaction.setId(UUID.randomUUID());
+		transaction.setRecordID(UUID.randomUUID());
 		transaction.setAmount(this.amount);
-
+		transaction.setTransactionType(this.type);
 		Date date = new Date(System.currentTimeMillis());
 		transaction.setTimeStamp(date);
 
@@ -45,13 +47,20 @@ public class TransactionQuery implements ResultCommandInterface<Transaction> {
 	}
 
 	private double amount;
-
 	public double getAmount() {
 		return this.amount;
 	}
-
 	public TransactionQuery setAmount(double amount) {
 		this.amount = amount;
+		return this;
+	}
+
+	private String type;
+	public String getType() {
+		return this.type;
+	}
+	public TransactionQuery setType(String type) {
+		this.type = type;
 		return this;
 	}
 

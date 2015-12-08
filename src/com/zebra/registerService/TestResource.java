@@ -5,6 +5,7 @@ import com.zebra.registerService.commands.ProductQuery;
 import com.zebra.registerService.commands.TransactionQuery;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.npc.testmodel.api.Product;
+import org.npc.testmodel.api.Transaction;
 import org.npc.testmodel.repositories.ProductRepository;
 
 import javax.ws.rs.*;
@@ -52,18 +53,18 @@ public class TestResource extends ResourceConfig {
 
 	@GET
 	@Path("acceptTransaction/{amount}")
+	//@Path("acceptTransaction?amount={amount}&type={type}")
 	public boolean acceptTransaction(@PathParam("amount") String amount) {
-
 		double doubleAmount;
 		try {
 			doubleAmount = Double.parseDouble(amount);
-
 
 			TransactionQuery transactionQuery = new TransactionQuery();
 			TransactionRepository transactionRepository = new TransactionRepository();
 
 			transactionQuery.setTransactionRepository(transactionRepository);
 			transactionQuery.setAmount(doubleAmount);
+			transactionQuery.setType("sale");
 
 			transactionQuery.save();
 			return true;

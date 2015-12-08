@@ -22,7 +22,7 @@ public class CreateTransactionCommand implements ResultCommandInterface<Transact
 		}*/
 		
 		/*this.transaction.setId();*/
-		modelTransaction = new Transaction(UUID.randomUUID());
+		modelTransaction = new Transaction();
 		modelTransaction.save();
 
 		return this.transaction;
