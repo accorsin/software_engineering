@@ -1,6 +1,10 @@
 package com.zebra.registerService;
 
 import com.zebra.registerService.commands.ProductQuery;
+import com.zebra.dataModel.Transaction;
+import com.zebra.dataModel.TransactionEntry;
+import com.zebra.dataModel.TransactionRepository;
+import com.zebra.dataModel.TransactionEntryRepository;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.npc.testmodel.api.Product;
 import org.npc.testmodel.repositories.ProductRepository;
@@ -42,6 +46,32 @@ public class TestResource  extends ResourceConfig {
 		productQuery.setLookUpCode(lookUpCode);
 
 		return productQuery.executeByLookUpCode();
+	}
+	
+	@GET
+	@Path("api0/transaction/{transactionid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Transaction getTransaction(@PathParam("transactionid") UUID transactionId){
+		TransactionQuery transactionQuery = new TransactionQuery();
+		TransactionRepository transactionRepository = new TransactionRepository();
+		
+		transactionQuery.setTransactionRepository(transactionRepository);
+		transactionQuery.setTransactionId(transactionId);
+		
+		return transactionQuery.execute();
+	}
+	
+	@GET
+	@Path("api0/transaction/{transactionentryid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TransactionEntry getTransactionEntry(@PathParam("transactionentryid") UUID transactionEntryId){
+		TransactionEntryQuery transactionEntryQuery = new TransactionEntryQuery();
+		TransactionEntryRepository transactionEntryRepository = new TransactionEntryRepository();
+		
+		transactionEntryQuery.setTransactionEntryRepository(transactionEntryRepository);
+		transactionEntryQuery.setTransactionEntryId(transactionEntryId);
+		
+		return transactionEntryQuery.execute();
 	}
 	
 	@GET
