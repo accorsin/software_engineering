@@ -5,7 +5,6 @@ import com.zebra.registerService.commands.ProductQuery;
 import com.zebra.registerService.commands.TransactionQuery;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.npc.testmodel.api.Product;
-import org.npc.testmodel.api.Transaction;
 import org.npc.testmodel.repositories.ProductRepository;
 
 import javax.ws.rs.*;

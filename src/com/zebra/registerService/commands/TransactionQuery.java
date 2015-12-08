@@ -1,8 +1,10 @@
 package com.zebra.registerService.commands;
 
+import com.zebra.dataModel.TransactionRepository;
 import com.zebra.dataModel.TransactionRepositoryInterface;
+import com.zebra.dataModel.Transaction; //ac
 import com.zebra.registerService.commands.interfaces.ResultCommandInterface;
-import org.npc.testmodel.api.Transaction;
+//import org.npc.testmodel.api.Transaction;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -11,9 +13,9 @@ import java.util.UUID;
 public class TransactionQuery implements ResultCommandInterface<Transaction> {
 	@Override
 	public Transaction execute() {
-		Transaction transaction = new Transaction();
+		Transaction transaction; //changed this to not be a redundant initialization
 		try {
-			transaction = new Transaction(this.transactionRepository.get(this.recordId));
+			transaction = new Transaction();
 		} catch (Exception e) {
 			transaction = null;
 		}
