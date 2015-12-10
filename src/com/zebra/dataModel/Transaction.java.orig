@@ -1,14 +1,15 @@
 package com.zebra.dataModel;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Map;
-import java.util.UUID;
 import java.util.Date;
+<<<<<<< HEAD
+import java.util.UUID;
+
+public class Transaction {
+=======
 import java.util.Iterator;
 import java.util.ArrayList;
 
-public class Transaction {
+import org.npc.dataaccess.model.BaseModel;
 
 public class Transaction extends BaseModel<Transaction>{
 
@@ -35,6 +36,7 @@ public class Transaction extends BaseModel<Transaction>{
 		return record;
 	}
 
+>>>>>>> a08bfe839880c248a435f5aed0da5a8bb4dd440a
 
     private UUID recordID;
     private UUID cashierID;
