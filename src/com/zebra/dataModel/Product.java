@@ -29,6 +29,102 @@ public class Product extends org.npc.testmodel.models.Product {
 		super(id);
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(int itemType) {
+		this.itemType = itemType;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getReorderPoint() {
+		return reorderPoint;
+	}
+
+	public void setReorderPoint(int reorderPoint) {
+		this.reorderPoint = reorderPoint;
+	}
+
+	public int getRestockLevel() {
+		return restockLevel;
+	}
+
+	public void setRestockLevel(int restockLevel) {
+		this.restockLevel = restockLevel;
+	}
+
+	public UUID getParentItem() {
+		return parentItem;
+	}
+
+	public void setParentItem(UUID parentItem) {
+		this.parentItem = parentItem;
+	}
+
+	public String getExtendedDescription() {
+		return extendedDescription;
+	}
+
+	public void setExtendedDescription(String extendedDescription) {
+		this.extendedDescription = extendedDescription;
+	}
+
+	public boolean isActiveStatus() {
+		return activeStatus;
+	}
+
+	public void setActiveStatus(boolean activeStatus) {
+		this.activeStatus = activeStatus;
+	}
+
+	public double getMsrp() {
+		return MSRP;
+	}
+
+	public void setMsrp(double msrp) {
+		MSRP = msrp;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
 	@Override
 	public String toString() {
 		return "Product{" +
